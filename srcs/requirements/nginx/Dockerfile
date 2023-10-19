@@ -6,10 +6,12 @@ RUN apt-get update && \
 
 RUN openssl req -x509 -nodes -days 365 \
     -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key \
-    -out /etc/ssl/certs/nginx-selfsigned.crt
+    -out /etc/ssl/certs/nginx-selfsigned.crt \
+    -subj "/C=MA/ST=BéniMellal-Khénifra/L=Khouribga/O=1337/OU=1337/CN=makacem.42.fr"
 
 COPY ./conf/my-nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 433
+EXPOSE 80
 
 CMD [ "nginx", "-g", "daemon off;" ]
