@@ -2,17 +2,18 @@ version: '3'
 
 services:
   nginx:
+    image: nginx-image
     build: requirements/nginx/
-    container_name: nginx
+    container_name: nginx-container
     ports:
       - "443:443"
     restart: always
     volumes:
       - wp_files:/var/www/html
   wordpress:
+    image: wordpress-image
     build: requirements/wordpress
-    container_name: wordpress
-    restart: always
+    container_name: wordpress-container
     volumes:
       - wp_files:/var/www/html
 

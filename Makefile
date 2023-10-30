@@ -8,7 +8,7 @@ build:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) -p $(DOCKER_COMPOSE_PROJECT) build
 
 up:
-	docker-compose -f $(DOCKER_COMPOSE_FILE) -p $(DOCKER_COMPOSE_PROJECT) up -d
+	docker-compose -f $(DOCKER_COMPOSE_FILE) -p $(DOCKER_COMPOSE_PROJECT) up
 
 clean:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) -p $(DOCKER_COMPOSE_PROJECT) down
@@ -16,5 +16,6 @@ clean:
 fclean: clean
 	docker-compose -f $(DOCKER_COMPOSE_FILE) -p $(DOCKER_COMPOSE_PROJECT) rm -f
 	docker volume prune -f
+	docker rmi nginx-image wordpress-image
 
 re: fclean build up
