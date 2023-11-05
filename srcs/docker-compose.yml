@@ -18,22 +18,17 @@ services:
     container_name: wordpress-container
     depends_on:
       - mariadb
-    environment:
-      MYSQL_DATABASE: wordpress
-      WORDPRESS_DB_USER: wp_user
-      WORDPRESS_DB_PASSWORD: wp_db_password
-      WORDPRESS_DB_HOST: mariadb:3306
     volumes:
       - wp_files:/var/www/html
+    env_file:
+      - .env
   mariadb:
     image: mariadb-image
     build: requirements/mariadb
     container_name: mariadb-container
-    environment:
-      MYSQL_ROOT_PASSWORD: root_pass
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wp_user
-      MYSQL_PASSWORD: wp_db_password
+    env_file:
+      - .env
+
 
 
 volumes:
