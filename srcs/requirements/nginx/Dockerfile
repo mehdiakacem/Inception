@@ -11,6 +11,9 @@ RUN openssl req -x509 -nodes -days 365 \
 
 COPY ./conf/my-nginx.conf /etc/nginx/nginx.conf
 
+RUN chmod 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+
 EXPOSE 433
 
 CMD [ "nginx", "-g", "daemon off;" ]

@@ -9,9 +9,11 @@ services:
       - wordpress
     ports:
       - "443:443"
-    restart: always
+    restart: on-failure
     volumes:
-      - wp_files:/var/www/html
+      - WordPress:/var/www/html
+    networks:
+      - inception
   wordpress:
     image: wordpress-image
     build: requirements/wordpress
@@ -19,17 +21,37 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - wp_files:/var/www/html
+      - WordPress:/var/www/html
     env_file:
       - .env
+    networks:
+      - inception
   mariadb:
     image: mariadb-image
     build: requirements/mariadb
     container_name: mariadb-container
+    volumes:
+      - DB:/var/lib/mysql
     env_file:
       - .env
-
+    networks:
+      - inception
 
 
 volumes:
-  wp_files:
+  WordPress:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/makacem/data/WordPress'
+  DB:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/makacem/data/DB'
+
+networks:
+  inception:
+    driver: bridge

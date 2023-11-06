@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update && \
-    apt-get install -y curl php7.3 php7.3-fpm php7.3-curl php7.3-zip php-mysql
+    apt-get install -y curl php7.3 php7.3-fpm php7.3-curl php7.3-zip php-mysql mariadb-client
 
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
 COPY ./tools/install_wp.sh /usr/bin/
