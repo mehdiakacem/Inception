@@ -26,6 +26,7 @@ services:
       - .env
     networks:
       - inception
+    restart: on-failure
   mariadb:
     image: mariadb
     build: requirements/mariadb
@@ -36,6 +37,7 @@ services:
       - .env
     networks:
       - inception
+    restart: on-failure
 
 
 volumes:
