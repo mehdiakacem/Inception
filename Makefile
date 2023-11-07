@@ -8,7 +8,7 @@ build:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) -p $(DOCKER_COMPOSE_PROJECT) build
 
 up:
-	docker-compose -f $(DOCKER_COMPOSE_FILE) -p $(DOCKER_COMPOSE_PROJECT) up
+	docker-compose -f $(DOCKER_COMPOSE_FILE) -p $(DOCKER_COMPOSE_PROJECT) up -d
 
 clean:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) -p $(DOCKER_COMPOSE_PROJECT) down

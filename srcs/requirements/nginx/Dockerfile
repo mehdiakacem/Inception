@@ -9,7 +9,7 @@ RUN openssl req -x509 -nodes -days 365 \
     -out /etc/ssl/certs/nginx-selfsigned.crt \
     -subj "/C=MA/ST=BéniMellal-Khénifra/L=Khouribga/O=1337/OU=1337/CN=makacem.42.fr"
 
-COPY ./conf/my-nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/my-nginx.conf /etc/nginx/sites-available/default
 
 RUN chmod 755 /var/www/html
 RUN chown -R www-data:www-data /var/www/html
